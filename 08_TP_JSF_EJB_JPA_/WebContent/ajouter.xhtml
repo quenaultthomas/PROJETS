@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:breadCrumb>
+			<p:menuitem value="Accueil" action="accueil" />
+			<p:menuitem value="Ajouter" action="#" />
+			<p:menuitem value="Modifier" action="modifier" />
+			<p:menuitem value="Supprimer" action="supprimer" />
+			<p:menuitem value="Déconnexion" action="deconnexion" />
+		</p:breadCrumb>
+	</h:form>
+
+	<div align="center">
+
+
+		<h:form>
+			<h:panelGrid columns="3">
+
+		Nom : 
+		<p:inputText id="nomId" value="#{userMB.users.nom}" label="Nom"
+					required="true"></p:inputText>
+				<h:message for="nomId" style="color:red"></h:message>
+
+				
+		Date de Naissance : 
+        <p:calendar id="dateId" value="#{userMB.users.date}"/>
+				<h:message for="dateId" style="color:red"></h:message>
+
+
+				<h:commandButton value="Ajouter" action="#{userMB.ajouter}"></h:commandButton>
+			</h:panelGrid>
+		</h:form>
+	</div>
+	
+
+</h:body>
+
+</html>
