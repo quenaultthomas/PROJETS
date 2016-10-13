@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+
+
+
+	<h:form>
+		<p:breadCrumb>
+			<p:menuitem value="Accueil" action="#" />
+			<p:menuitem value="Ajouter" action="ajouter" />
+			<p:menuitem value="Modifier" action="modifier" />
+			<p:menuitem value="Supprimer" action="supprimer" />
+			<p:menuitem value="Déconnexion" action="deconnexion" />
+		</p:breadCrumb>
+	</h:form>
+
+	<br />
+	<br />
+	<h:form>
+		<p:dataTable id="DataTable" var="u" value="#{sessionScope.listeUsers}" rows="5"
+			paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+			<p:column headerText="Id">
+				<h:outputText value="#{u.id_user}" />
+			</p:column>
+
+			<p:column headerText="Nom">
+				<h:outputText value="" />
+				<p:inplace id="nom1" editor="true">
+					<p:inputText value="#{u.nom}" required="true" label="Nom" />
+				</p:inplace>
+			</p:column>
+
+			<p:column headerText="Date de Naissance">
+				<h:outputText value="" >
+				<f:convertDateTime pattern="yyyy-MM-dd"/>
+				</h:outputText>
+				<p:inplace id="date1" editor="true">
+					<p:inputText value="#{u.date}" required="true" label="Date">
+					<f:convertDateTime pattern="yyyy-MM-dd"/>
+					</p:inputText>
+				</p:inplace>
+			</p:column>
+
+			<p:column headerText="Action" style="width:90px;">
+				<p:commandButton update="@all" title="Supprimer"
+					icon="ui-icon-trash" action="#{userMB.supprimer}">
+					<f:setPropertyActionListener value="#{u}"
+						target="#{userMB.users}"></f:setPropertyActionListener>
+				</p:commandButton>
+				<p:commandButton update="@all" title="Modifier"
+					icon="ui-icon-disk" action="#{userMB.modifier}">
+					<f:setPropertyActionListener value="#{u}"
+						target="#{userMB.users}"></f:setPropertyActionListener>
+				</p:commandButton>
+
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<img src="image/pied_de_page.png" align="bottom" style="margin-top: 200px" />
+	</h:body>
+
+</html>
